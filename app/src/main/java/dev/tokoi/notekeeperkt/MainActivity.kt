@@ -15,16 +15,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            val originalValue = textDisplayedValue.text.toString().toInt()
-            val newValue = originalValue * 2
-            textDisplayedValue.text = newValue.toString()
-            Snackbar.make(
-                view, "Value $originalValue chaned to $newValue",
-                Snackbar.LENGTH_LONG
-            ).show()
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
