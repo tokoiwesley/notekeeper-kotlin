@@ -1,5 +1,6 @@
 package dev.tokoi.notekeeperkt
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -14,8 +15,8 @@ class NoteListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            val activityIntent = Intent(this, MainActivity::class.java)
+            startActivity(activityIntent)
         }
     }
 }
