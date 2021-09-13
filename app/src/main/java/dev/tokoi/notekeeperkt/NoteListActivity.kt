@@ -2,10 +2,10 @@ package dev.tokoi.notekeeperkt
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_note_list.*
+import kotlinx.android.synthetic.main.content_note_list.*
 
 class NoteListActivity : AppCompatActivity() {
 
@@ -14,9 +14,15 @@ class NoteListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_note_list)
         setSupportActionBar(toolbar)
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+        fab.setOnClickListener { view ->
             val activityIntent = Intent(this, MainActivity::class.java)
             startActivity(activityIntent)
         }
+
+        listNotes.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            DataManager.notes
+        )
     }
 }
