@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity() {
 
         if (notePosition != POSITION_NOT_SET) {
             displayNote()
+        } else {
+            DataManager.notes.add(NoteInfo())
+            notePosition = DataManager.notes.lastIndex
         }
     }
 
@@ -76,5 +79,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        saveNote()
+    }
+
+    private fun saveNote() {
+        val note = DataManager.notes.get(notePosition)
+        note.title = textNoteTitle.text.toString()
+        note.text = textNoteText.text.toString()
+        note.course = spinnerCourses.selectedItem as CourseInfo
     }
 }
