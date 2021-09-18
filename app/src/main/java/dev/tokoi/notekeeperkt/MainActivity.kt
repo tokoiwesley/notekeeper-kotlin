@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val adapterCourses = ArrayAdapter<CourseInfo>(
+        val adapterCourses = ArrayAdapter(
             this,
             android.R.layout.simple_spinner_item,
             DataManager.courses.values.toList()
@@ -25,7 +25,11 @@ class MainActivity : AppCompatActivity() {
 
         spinnerCourses.adapter = adapterCourses
 
-        notePosition = intent.getIntExtra(EXTRA_NOTE_POSITION, POSITION_NOT_SET)
+        notePosition =
+            savedInstanceState?.getInt(NOTE_POSITION, POSITION_NOT_SET) ?: intent.getIntExtra(
+                NOTE_POSITION,
+                POSITION_NOT_SET
+            )
 
         if (notePosition != POSITION_NOT_SET) {
             displayNote()
@@ -33,6 +37,11 @@ class MainActivity : AppCompatActivity() {
             DataManager.notes.add(NoteInfo())
             notePosition = DataManager.notes.lastIndex
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(NOTE_POSITION, notePosition)
     }
 
     private fun displayNote() {
