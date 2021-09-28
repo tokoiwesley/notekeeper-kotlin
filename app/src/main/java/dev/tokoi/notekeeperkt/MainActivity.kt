@@ -34,9 +34,13 @@ class MainActivity : AppCompatActivity() {
         if (notePosition != POSITION_NOT_SET) {
             displayNote()
         } else {
-            DataManager.notes.add(NoteInfo())
+            createNewNote()
             notePosition = DataManager.notes.lastIndex
         }
+    }
+
+    private fun createNewNote() {
+        DataManager.notes.add(NoteInfo())
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
