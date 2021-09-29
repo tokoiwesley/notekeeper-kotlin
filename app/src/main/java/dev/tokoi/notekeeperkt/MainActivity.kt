@@ -1,6 +1,7 @@
 package dev.tokoi.notekeeperkt
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
@@ -9,6 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
+    private val TAG = "MainActivity"
     private var notePosition = POSITION_NOT_SET
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +37,13 @@ class MainActivity : AppCompatActivity() {
             displayNote()
         } else {
             createNewNote()
-            notePosition = DataManager.notes.lastIndex
         }
+        Log.d(TAG, "onCreate")
     }
 
     private fun createNewNote() {
         DataManager.notes.add(NoteInfo())
+        notePosition = DataManager.notes.lastIndex
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -49,6 +52,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun displayNote() {
+        if (notePosition > DataManager.notes.lastIndex) {
+//            showMessage("Note not found")
+            Log.e(
+                TAG,
+                "displayNote: Invalid note position $notePosition, max valid position ${DataManager.notes.lastIndex}"
+            )
+            return
+        }
+        Log.i(TAG, "displayNote: Displaying note for position $notePosition")
         val note = DataManager.notes[notePosition]
         textNoteTitle.setText(note.title)
         textNoteText.setText(note.text)
@@ -97,6 +109,7 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         saveNote()
+        Log.d(TAG, "onPause")
     }
 
     private fun saveNote() {
