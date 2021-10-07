@@ -14,5 +14,9 @@ class DataManagerTest {
 
         val index = DataManager.addNote(course, noteTitle, noteText)
         val note = DataManager.notes[index]
+
+        assertEquals(course, note.course)
+        assertEquals(noteTitle, note.title)
+        assertEquals(noteText, note.text)
     }
 }
