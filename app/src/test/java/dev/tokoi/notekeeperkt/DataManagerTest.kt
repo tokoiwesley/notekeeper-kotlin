@@ -1,10 +1,16 @@
 package dev.tokoi.notekeeperkt
 
 import org.junit.Assert.*
+import org.junit.Before
 
 import org.junit.Test
 
 class DataManagerTest {
+    @Before
+    fun setUp() {
+        DataManager.notes.clear()
+        DataManager.initializeNotes()
+    }
 
     @Test
     fun addNote() {

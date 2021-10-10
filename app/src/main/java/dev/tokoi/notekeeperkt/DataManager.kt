@@ -38,7 +38,7 @@ object DataManager {
         courses.set(course.courseId, course)
     }
 
-    private fun initializeNotes() {
+    fun initializeNotes() {
         var course = courses["android_intents"]!!
         var note = NoteInfo(
             course, "Dynamic intent resolution",
