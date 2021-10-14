@@ -1,7 +1,10 @@
 package dev.tokoi.notekeeperkt
 
 import androidx.test.espresso.Espresso.onData
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import org.hamcrest.Matchers.*
@@ -18,10 +21,20 @@ class NextThroughNotesTest {
 
     @Test
     fun nextThroughNotes() {
-        onData(allOf(instanceOf(NoteInfo::class.java), equalTo(DataManager.notes[0]))).perform(click())
+        onData(
+            allOf(
+                instanceOf(NoteInfo::class.java),
+                equalTo(DataManager.notes[0])
+            )
+        ).perform(click())
 
         for (index in 0..DataManager.notes.lastIndex) {
             val note = DataManager.notes[index]
+
+            onView(withId(R.id.spinnerCourses)).check(matches(withSpinnerText(note.course?.title)))
+
+            onView(withId(R.id.textNoteTitle)).check(matches(withText(note.title)))
+            onView(withId(R.id.textNoteText)).check(matches(withText(note.text)))
         }
     }
 }
