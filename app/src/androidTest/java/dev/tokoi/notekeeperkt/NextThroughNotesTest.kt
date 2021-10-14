@@ -35,6 +35,12 @@ class NextThroughNotesTest {
 
             onView(withId(R.id.textNoteTitle)).check(matches(withText(note.title)))
             onView(withId(R.id.textNoteText)).check(matches(withText(note.text)))
+
+            if (index != DataManager.notes.lastIndex) {
+                onView(allOf(withId(R.id.action_next), isEnabled())).perform(click())
+            }
         }
+
+        onView(withId(R.id.action_next)).check(matches(not(isEnabled())))
     }
 }
