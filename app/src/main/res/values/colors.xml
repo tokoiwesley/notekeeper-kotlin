@@ -8,5 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="pluralsight_orange">#FFF05A28</color>
+    <!-- App colors -->
+    <color name="jet">#333333</color>
+    <color name="eerie_black">#222222</color>
+    <color name="flame">#FFF05A28</color>
 </resources>
