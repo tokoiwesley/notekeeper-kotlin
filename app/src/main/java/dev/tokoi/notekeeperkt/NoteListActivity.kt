@@ -2,6 +2,7 @@ package dev.tokoi.notekeeperkt
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,10 +25,12 @@ class NoteListActivity : AppCompatActivity() {
             startActivity(Intent(this, NoteActivity::class.java))
         }
 
-        listItems.layoutManager = LinearLayoutManager(this, )
+        listItems.layoutManager = LinearLayoutManager(this)
+        listItems.adapter = NoteRecyclerAdapter(this, DataManager.notes)
     }
 
     override fun onResume() {
         super.onResume()
+        listItems.adapter?.notifyDataSetChanged()
     }
 }

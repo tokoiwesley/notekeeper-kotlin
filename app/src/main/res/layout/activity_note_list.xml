@@ -9,7 +9,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.NoteKeeperKt.AppBarOverlay">
+        android:theme="@style/Theme.NoteKeeperKt.AppBarOverlay"
+        app:elevation="1dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -29,6 +30,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
+        android:contentDescription="TODO"
         app:srcCompat="@drawable/ic_add_white_24" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
