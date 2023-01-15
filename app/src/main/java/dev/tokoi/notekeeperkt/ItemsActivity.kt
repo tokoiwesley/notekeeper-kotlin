@@ -1,5 +1,6 @@
 package dev.tokoi.notekeeperkt
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
@@ -11,7 +12,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import dev.tokoi.notekeeperkt.databinding.ActivityItemsBinding
+import kotlinx.android.synthetic.main.content_items.*
 
 class ItemsActivity : AppCompatActivity() {
 
@@ -27,9 +30,12 @@ class ItemsActivity : AppCompatActivity() {
         setSupportActionBar(binding.appBarItems.toolbar)
 
         binding.appBarItems.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            startActivity(Intent(this, NoteActivity::class.java))
         }
+
+        listItems.layoutManager = LinearLayoutManager(this)
+        listItems.adapter = NoteRecyclerAdapter(this, DataManager.notes)
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
 //        val navController = findNavController(R.id.nav_host_fragment_content_items)
@@ -42,6 +48,11 @@ class ItemsActivity : AppCompatActivity() {
         )
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //        navView.setupWithNavController(navController)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        listItems.adapter.notifyDataSetChanged()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
