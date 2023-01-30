@@ -12,7 +12,7 @@
         <activity
             android:name=".ItemsActivity"
             android:exported="true"
-            android:label="@string/title_activity_items"
+            android:label="@string/app_name"
             android:theme="@style/Theme.NoteKeeperKt.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,13 +28,7 @@
             android:name=".NoteListActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.NoteKeeperKt.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/Theme.NoteKeeperKt.NoActionBar" />
         <activity
             android:name=".NoteActivity"
             android:label="@string/title_activity_main"
